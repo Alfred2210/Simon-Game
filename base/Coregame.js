@@ -1,50 +1,75 @@
-class Coregame {
-  constructor() {
-    this.colors = [];
-    this.sequenceUser = [];
+class CoreGame {
+  constructor(display) {
+    this.colors = ["red", "green", "blue", "yellow"];
+    this.display = display;
     this.sequenceGame = [];
-    this.point =0;
-    this.level = 1;
-    this.isPlayerTurn = false;
+    this.userSequence = [];
+    this.level = 0;
+    this.bestScore = 0;
+    this.gameOver = false;
   }
 
-  /*
-  Le jeu se déroule comme suit:
-1. Au chargement de la page, la partie commence avec le niveau 1 et le point 0.
-2. La séquence de jeu est créée. Le jeu choisit une couleur au hasard et la fait clignoter.
-3. Le joueur doit reproduire la séquence en cliquant sur les boutons de couleur dans l'ordre.
-4. Si le joueur réussit, le jeu ajoute une nouvelle couleur à la séquence et recommence avec la séquence complète (y compris la nouvelle couleur).
-5. Si le joueur se trompe, la partie est terminée et le joueur peut choisir de recommencer à partir du niveau 1.
-6. Le score du joueur est calculé en fonction du niveau atteint et du nombre de couleurs dans la séquence.
-7. Les joueurs peuvent rejouer le jeu autant de fois qu'ils le souhaitent.
-
- */
-
-  
-  createSequence()
-  {
-    const randomColorIndex =  Math.floor(Math.random()*this.colors.length)
-    this.sequenceGame.push(this.colors[randomColorIndex])
+  startBtn() {
+    this.sequenceGame = [];
+    this.userSequence = [];
+    this.level = 0;
+    this.gameOver = false;
+    this.displayLevel();
+    this.generateSequence();
   }
 
-  playSequence()
-  {
-    //fait appel a la methode blink de la classe Display
+  generateSequence() {
+    const randomColor =
+      this.colors[Math.floor(Math.random() * this.colors.length)];
+    this.sequenceGame.push(randomColor);
+    this.displaySequence();
+    setTimeout(() => {
+      this.display.blink(this.sequenceGame[0]);
+    }, 1000);
+  }
 
-    for(let i=0; i<this.sequenceGame.length; i++)
-    {
-      setTimeout(() => this.blink(this.sequenceGame[i]), 1000*i)
+  displaySequence() {
+    this.sequenceGame.forEach((color, index) => {
+      setTimeout(() => {
+        this.display.blink(color);
+      }, (index + 1) * 1000);
+    });
+  }
+
+  clickBtn(color) {
+    if (this.gameOver) {
+      return;
+    }
+
+    this.display.blink(color);
+    this.userSequence.push(color);
+    const index = this.userSequence.length - 1;
+    if (this.userSequence[index] !== this.sequenceGame[index]) {
+      this.gameOver = true;
+      this.display.displayMessage("GAME OVER! fin de la partie");
+      return;
+    }
+
+    if (this.userSequence.length === this.sequenceGame.length) {
+      this.level++;
+      this.bestScore++;
+      this.userSequence = [];
+      this.displayLevel();
+      this.generateSequence();
+      this.updateBestScore();
     }
   }
-  checkSequenceisCorrect()
-  {
-    for(let i=0; i<this.sequenceUser.length; i++)
-    {
-      if(this.sequenceUser[i] !== this.sequenceGame[i])
-      {
-        return false
-      }
+
+  displayLevel() {
+    this.display.displayMessage(`Level: ${this.level}`);
+  }
+
+  updateBestScore() {
+    if (this.level > this.bestScore) {
+      this.bestScore = this.level;
     }
-    return true
+  }
+  displayBestScore() {
+    this.display.displayMessage(`Best score: ${this.bestScore}`);
   }
 }

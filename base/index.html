@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Simon Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <div class="btn top-left"></div>
-        <div class="btn top-right"></div>
-    </div>
-    <div>
-        <div class="btn bottom-left"></div>
-        <div class="btn bottom-right"></div>
-    </div>
-
-    <div class="btn-start">
-        <button id="start">Start</button>
-        <button id="reset">Reset</button>
-    </div>
-
-    <div id="score-box">
-        Level: <span id="level"></span><br>                
-        Score: <span id="points"></span>
+  <div class="container">
+    
+    <div class="simon-game">
+      <div class="simon-buttons">
+        <button id="red" class="button"></button>
+        <button id="green" class="button"></button>
+        <button id="blue" class="button"></button>
+        <button id="yellow" class="button"></button>
       </div>
-      
-
-
+    </div>
+    <button id="start">Commencer</button>
+    <div id="message"></div>
+    <div id="bestScore"> </div>
+  </div>
+  
+  <script src="CoreGame.js"></script>
+  <script src="Display.js"></script>
+  <script src="Main.js"></script>
 </body>
-    <script src ="./Coregame.js"></script>
-    <script src="./Display.js"></script>
 </html>

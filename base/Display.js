@@ -1,44 +1,22 @@
 class Display {
-  constructor() 
-  {
-    this.game = new Coregame();
-
-    this.topright = document.querySelector(".top-right");
-    this.topLeft = document.querySelector('.top-left');
-    this.bottomRight = document.querySelector('.bottom-right');
-    this.bottomLeft = document.querySelector('.bottom-left');
-    this.startButton = document.getElementById("start");
-    this.startButton.addEventListener("click", () => this.startBtn());
+  constructor() {
+    this.red = document.querySelector('#red');
+    this.green = document.querySelector('#green');
+    this.blue = document.querySelector('#blue');
+    this.yellow = document.querySelector('#yellow');
+    this.message = document.querySelector('#message');
+    this.bestScore = document.querySelector('#bestScore');
   }
 
-  //ajouter les couleurs dans le tableau colors
-  setColors() 
-  {
-    const colorElems = document.querySelectorAll(".btn");
-    for (let i = 0; i < colorElems.length; i++) {
-      const color = getComputedStyle(colorElems[i]).getPropertyValue(
-        "background-color"
-      );
-      this.game.colors.push(color);
-    }
+  displayMessage(text) {
+    this.message.textContent = text;
   }
 
-  blink(color)
-  {
-    const colorElem = document.querySelector(`.${color}`);
-    colorElem.classList.add("active");
-    setTimeout(() => colorElem.classList.remove("active"), 500);
+  blink(color) {
+    const button = this[color];
+    button.classList.add('flash');
+    setTimeout(() => {
+      button.classList.remove('flash');
+    }, 300);
   }
-
-  //lance le jeu et créer une nouvelle séquence de jeu
- 
-  startBtn() 
-  {
-       this.game.createSequence();
-  }
-  
-  
-  
 }
-
-const display = new Display();

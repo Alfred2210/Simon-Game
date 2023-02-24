@@ -1,29 +1,37 @@
-body{
+body {
 
-    text-align: center;
+  text-align: center;
 }
 
-.btn {
-    width: 300px;
-    height: 300px;
-    display: inline-block;
-    
-  }
-  .top-left {
-    border-top-left-radius: 200px;
-    background-color: green;
-  }
-  .top-right {
-    border-top-right-radius: 200px;
-    background-color: red;
 
-  }
-  .bottom-left {
-    border-bottom-left-radius: 200px;
-    background-color: yellow;
-  }
-  .bottom-right {
-    border-bottom-right-radius: 200px;
-    background-color: blue;
-  }
-  
+
+button {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+
+#red {
+  background-color: #FF3E3E;
+}
+
+#green {
+  background-color: #4CAF50;
+}
+
+#blue {
+  background-color: #2196F3;
+}
+
+#yellow {
+  background-color: #FFD600;
+}
+
+.flash {
+  opacity: 0.5;
+}
