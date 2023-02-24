@@ -5,7 +5,7 @@ class CoreGame {
     this.sequenceGame = [];
     this.userSequence = [];
     this.level = 0;
-    this.bestScore = 0;
+    this.score = 0;
     this.gameOver = false;
   }
 
@@ -13,8 +13,9 @@ class CoreGame {
     this.sequenceGame = [];
     this.userSequence = [];
     this.level = 0;
+    this.score = 0;
     this.gameOver = false;
-    this.displayLevel();
+    this.displayScore();
     this.generateSequence();
   }
 
@@ -51,25 +52,15 @@ class CoreGame {
     }
 
     if (this.userSequence.length === this.sequenceGame.length) {
-      this.level++;
-      this.bestScore++;
+      this.score++;
       this.userSequence = [];
-      this.displayLevel();
+      this.displayScore();
       this.generateSequence();
-      this.updateBestScore();
     }
   }
 
-  displayLevel() {
-    this.display.displayMessage(`Level: ${this.level}`);
+  displayScore() {
+    this.display.displayMessage(`Score: ${this.score}`);
   }
 
-  updateBestScore() {
-    if (this.level > this.bestScore) {
-      this.bestScore = this.level;
-    }
-  }
-  displayBestScore() {
-    this.display.displayMessage(`Best score: ${this.bestScore}`);
-  }
 }

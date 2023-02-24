@@ -17,19 +17,19 @@ button {
 
 
 #red {
-  background-color: #FF3E3E;
+  background-color: #FFD600;
 }
 
 #green {
-  background-color: #4CAF50;
-}
-
-#blue {
   background-color: #2196F3;
 }
 
+#blue {
+  background-color: #f32121;
+}
+
 #yellow {
-  background-color: #FFD600;
+  background-color: #00ff4c;
 }
 
 .flash {

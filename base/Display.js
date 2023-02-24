@@ -4,12 +4,11 @@ class Display {
     this.green = document.querySelector('#green');
     this.blue = document.querySelector('#blue');
     this.yellow = document.querySelector('#yellow');
-    this.message = document.querySelector('#message');
-    this.bestScore = document.querySelector('#bestScore');
+    this.score = document.querySelector('#score');
   }
 
   displayMessage(text) {
-    this.message.textContent = text;
+    this.score.textContent = text;
   }
 
   blink(color) {
